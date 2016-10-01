@@ -1,5 +1,3 @@
-with text_io;
-use text_io;
 package body AdaptiveQuad is
    
    function AQuad(x,y,epsi: Float) return Float is
@@ -27,7 +25,6 @@ package body AdaptiveQuad is
 			task body AdaptiveQuadTaskType is 
 			    mResult,start_x,end_y,eps,whole : Float;
 			begin
-				Put("Task");
 			    accept SetValue(startVal,endVal,epsVal,wholeVal: Float) do
 			    	start_x := startVal;
 			    	end_y := endVal;

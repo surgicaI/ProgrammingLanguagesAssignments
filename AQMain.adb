@@ -1,31 +1,34 @@
 with text_io; -- always need these two lines for reading and printing
 use text_io;
 with AdaptiveQuad;
+with Ada.Numerics.Generic_Elementary_Functions;
 
 procedure AQMain is
 
-package int_io is new integer_io(integer);
-use int_io;
 package Float_Text_IO is new Text_IO.Float_IO(Float);
 use Float_Text_IO;
+package Value_Functions is new Ada.Numerics.Generic_Elementary_Functions (Float);
+use Value_Functions;
 
-Epsilon : Float := 0.000001 ;
-integralResult : Float ;
+Epsilon : Float := 0.000001;
+integralResult,startVal, endVal : Float ;
 
 function MyF(num: in Float) return Float is
 	result: Float ;
 	begin 
-		--ToDo for Sin X^2
-		-- Also types should be Floats
-		result := num * num ;
+		result := Sin(X => (num * num)) ;
 		return result ;
 	end MyF ;
 
 package floatAdaptiveQuad is new AdaptiveQuad(MyF);
 
 begin
-  integralResult := floatAdaptiveQuad.AQuad(0.0,100.0,Epsilon);
-  Put(Item => integralResult);
-  New_Line;
+	Put("Enter two numbers:");
+	New_Line;
+	get(startVal);
+	get(endVal);
+	integralResult := floatAdaptiveQuad.AQuad(startVal,endVal,Epsilon);
+	Put(Item => integralResult);
+	New_Line;
 
 end AQMain;
