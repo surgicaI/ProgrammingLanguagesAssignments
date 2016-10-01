@@ -1,6 +1,6 @@
 package body AdaptiveQuad is
    
-   function AQuad(x,y,epsi: Float) return Float is
+   function AQuad(A,B,Eps: Float) return Float is
 
    		function simpsons_rule(x,y: Float) return Float is
    			h3 :Float ;
@@ -60,7 +60,7 @@ package body AdaptiveQuad is
 	    end recursive_asr;
 
 	begin
-	   		return recursive_asr(x,y,epsi,simpsons_rule(x,y));
+	   		return recursive_asr(A,B,Eps,simpsons_rule(A,B));
 	end AQuad;
    
 end AdaptiveQuad;
