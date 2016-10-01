@@ -17,6 +17,7 @@ package body AdaptiveQuad is
 	    	--Recursive implementation of adaptive Simpson's rule
 
 	    	c,left,right,leftResult,rightResult: Float;
+	    	endTaskVal :Float := -1.0;
 
 			task type AdaptiveQuadTaskType is
 			    entry SetValue(startVal,endVal,epsVal,wholeVal: Float);
@@ -49,8 +50,8 @@ package body AdaptiveQuad is
 	    		left := simpsons_rule(a,c);
 	    		right := simpsons_rule(c,b);
 	    		if (abs(left + right - whole) <= 15.0 * eps) then
-	    			leftSubtask.SetValue(-1.0,-1.0,eps/2.0,left);
-					rightSubtask.SetValue(-1.0,-1.0,eps/2.0,right);
+	    			leftSubtask.SetValue(endTaskVal,endTaskVal,eps/2.0,left);
+					rightSubtask.SetValue(endTaskVal,endTaskVal,eps/2.0,right);
 	        		return left + right + (left + right - whole)/15.0 ;
 				end if;
 				leftSubtask.SetValue(a,c,eps/2.0,left);
