@@ -45,7 +45,7 @@ procedure AQMain is
 		startVal, endVal,integralResult : Float;
 	begin
 	    accept Start(a,b:Float) do
-	    	startVal := a ;
+			startVal := a ;
 			endVal := b ;
 		end Start;
 			integralResult := floatAdaptiveQuad.AQuad(startVal,endVal,Epsilon);
